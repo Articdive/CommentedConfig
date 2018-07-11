@@ -17,6 +17,16 @@
     </properties>
     <url>ci.articdive.cf</url>
 
+    <developers>
+        <developer>
+            <name>Lukas Mansour</name>
+            <roles>
+                <role>Project Leader</role>
+            </roles>
+            <timezone>CEST (Germany)</timezone>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
