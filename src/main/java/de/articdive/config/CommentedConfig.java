@@ -77,8 +77,6 @@ public class CommentedConfig extends YamlConfiguration {
 			StringBuilder newContents = new StringBuilder();
 			// This holds the current path the lines are at in the config
 			String currentPath = "";
-			// This tells if the specified path has already been commented
-			boolean commentedPath = false;
 			// This flags if the line is a node or unknown text.
 			boolean node;
 			// The depth of the path. (number of words separated by periods - 1)

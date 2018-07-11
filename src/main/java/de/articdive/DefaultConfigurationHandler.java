@@ -13,21 +13,15 @@ public class DefaultConfigurationHandler extends ConfigurationHandler {
 	}
 
 	@Override
-	public CommentedConfig setDefaults(File file) {
+	public CommentedConfig setDefaults(CommentedConfig memoryconfig, File file) {
 
-		CommentedConfig newConfig = new CommentedConfig(file);
 		newConfig.load();
 
-		for (Enum<> root : main.getConfigNodes()) {
+		for (ConfigNodes root : main.getConfigNodes()) {
 			if (root.getComments().length > 0) {
-				addComment(root.getRoot(), root.getComments());
+				addComment(root.getNode(), root.getComments());
 			}
-			if (root.getRoot().equals(ConfigNodes.VERSION.getRoot())) {
-				setNewProperty(root.getRoot(), version);
-			} else if (root.getRoot().equals(ConfigNodes.LAST_RUN_VERSION.getRoot())) {
-				setNewProperty(root.getRoot(), getLastRunVersion(version));
-			} else
-				setNewProperty(root.getRoot(), (config.get(root.getRoot().toLowerCase()) != null) ? config.get(root.getRoot().toLowerCase()) : root.getDefault());
+			setNewProperty(root.getNode(), (memoryconfig.get(root.getNode().toLowerCase()) != null) ? memoryconfig.get(root.getNode().toLowerCase()) : root.getDefaultValue());
 
 		}
 
@@ -36,16 +30,15 @@ public class DefaultConfigurationHandler extends ConfigurationHandler {
 
 	private void addComment(String root, String... comments) {
 
-		main.getHolder().addComment(root.toLowerCase(), comments);
+		newConfig.addComment(root.toLowerCase(), comments);
 	}
 
 	private void setNewProperty(String root, Object value) {
 
 		if (value == null) {
-			// System.out.print("value is null for " + root.toLowerCase());
 			value = "";
 		}
-		main.getHolder().setNewProperty(root.toLowerCase(), value.toString());
+		newConfig.set(root.toLowerCase(), value.toString());
 	}
 
 }

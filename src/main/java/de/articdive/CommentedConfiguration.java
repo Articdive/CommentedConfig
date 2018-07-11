@@ -9,7 +9,7 @@ import de.articdive.interfaces.ConfigurationHandler;
 import java.lang.reflect.InvocationTargetException;
 
 public class CommentedConfiguration {
-	private ConfigNodes configNodes;
+	private ConfigNodes[] configNodes;
 	private String filepath;
 	private ConfigurationHandler handler;
 	private ConfigurationHolder holder;
@@ -20,7 +20,7 @@ public class CommentedConfiguration {
 	 *                    <p>
 	 *                    This will load with defaultConfigurationHandler.
 	 */
-	public CommentedConfiguration(@NotNull ConfigNodes configNodes, @NotNull String filepath) {
+	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(@NotNull Class<T> configNodes, @NotNull String filepath) {
 		this(configNodes, filepath, null);
 	}
 
@@ -29,22 +29,22 @@ public class CommentedConfiguration {
 	 * @param filepath    - location of the config (should include the name).
 	 * @param handler     - The setDefaults() handler.
 	 */
-	public CommentedConfiguration(@NotNull ConfigNodes configNodes, @NotNull String filepath, @Nullable Class<? extends ConfigurationHandler> handler) {
-		this.configNodes = configNodes;
+	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(@NotNull Class<T> configNodes, @NotNull String filepath, @Nullable Class<? extends ConfigurationHandler> handler) {
+		this.configNodes = configNodes.getEnumConstants();
 		this.filepath = filepath;
 		if (handler == null) {
 			this.handler = new DefaultConfigurationHandler(this);
 		} else {
 			try {
-				handler = handler.getConstructor(CommentedConfiguration.class).newInstance(this);
+				this.handler = handler.getConstructor(CommentedConfiguration.class).newInstance(this);
 			} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 				e.printStackTrace();
 			}
 		}
-
+		holder = new ConfigurationHolder(this);
 	}
 
-	public ConfigNodes getConfigNodes() {
+	public ConfigNodes[] getConfigNodes() {
 		return configNodes;
 	}
 
@@ -58,5 +58,9 @@ public class CommentedConfiguration {
 
 	ConfigurationHolder getHolder() {
 		return holder;
+	}
+
+	public String getString(ConfigNodes node) {
+		return holder.getConfig().getString(node.getNode().toLowerCase(), node.getDefaultValue());
 	}
 }

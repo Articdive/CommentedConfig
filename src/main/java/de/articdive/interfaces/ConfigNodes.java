@@ -10,6 +10,4 @@ public interface ConfigNodes {
 	default String[] getComments() {
 		return new String[]{""};
 	}
-
-	String getFile();
 }

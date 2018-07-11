@@ -8,10 +8,11 @@ import java.io.File;
 public abstract class ConfigurationHandler {
 
 	protected CommentedConfiguration main;
+	protected CommentedConfig newConfig;
 
 	public ConfigurationHandler(CommentedConfiguration main) {
 		this.main = main;
 	}
 
-	public abstract CommentedConfig setDefaults(File file);
+	public abstract CommentedConfig setDefaults(CommentedConfig memoryconfig, File file);
 }
