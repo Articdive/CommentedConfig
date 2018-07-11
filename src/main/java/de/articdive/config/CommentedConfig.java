@@ -24,12 +24,11 @@ import java.util.HashMap;
  */
 public class CommentedConfig extends YamlConfiguration {
 
-	private HashMap<String, String> comments;
-	private File file;
-
 	private final DumperOptions yamlOptions = new DumperOptions();
 	private final Representer yamlRepresenter = new YamlRepresenter();
 	private final Yaml yaml = new Yaml(new YamlConstructor(), yamlRepresenter, yamlOptions);
+	private HashMap<String, String> comments;
+	private File file;
 
 	public CommentedConfig(File file) {
 
