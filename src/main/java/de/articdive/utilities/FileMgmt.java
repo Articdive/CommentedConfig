@@ -36,11 +36,9 @@ public class FileMgmt {
 
 		if (file != null && file.exists() && file.canRead() && !file.isDirectory()) {
 			Writer writer = new StringWriter();
-			InputStream is = null;
 
 			char[] buffer = new char[1024];
-			try {
-				is = new FileInputStream(file);
+			try (InputStream is = new FileInputStream(file)) {
 				Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 				int n;
 				while ((n = reader.read(buffer)) != -1) {
@@ -49,13 +47,6 @@ public class FileMgmt {
 				reader.close();
 			} catch (IOException e) {
 				System.out.println("Exception ");
-			} finally {
-				if (is != null) {
-					try {
-						is.close();
-					} catch (IOException ignore) {
-					}
-				}
 			}
 			return writer.toString();
 		} else {
