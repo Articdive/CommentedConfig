@@ -15,6 +15,7 @@ public class DefaultConfigurationHandler extends ConfigurationHandler {
 	@Override
 	public CommentedConfig setDefaults(CommentedConfig memoryconfig, File file) {
 
+		newConfig = new CommentedConfig(file);
 		newConfig.load();
 
 		for (ConfigNodes root : main.getConfigNodes()) {

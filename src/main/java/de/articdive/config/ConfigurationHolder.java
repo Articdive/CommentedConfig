@@ -16,7 +16,7 @@ public class ConfigurationHolder {
 
 	private void loadConfig(String filepath) {
 
-		File file = FileMgmt.CheckYMLExists(new File(filepath));
+		File file = FileMgmt.checkYMLExists(new File(filepath));
 		if (file != null) {
 
 			config = new CommentedConfig(file);

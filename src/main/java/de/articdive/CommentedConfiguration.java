@@ -1,7 +1,5 @@
 package de.articdive;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import de.articdive.config.ConfigurationHolder;
 import de.articdive.interfaces.ConfigNodes;
 import de.articdive.interfaces.ConfigurationHandler;
@@ -20,7 +18,7 @@ public class CommentedConfiguration {
 	 *                    <p>
 	 *                    This will load with defaultConfigurationHandler.
 	 */
-	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(@NotNull Class<T> configNodes, @NotNull String filepath) {
+	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(Class<T> configNodes, String filepath) {
 		this(configNodes, filepath, null);
 	}
 
@@ -29,7 +27,7 @@ public class CommentedConfiguration {
 	 * @param filepath    - location of the config (should include the name).
 	 * @param handler     - The setDefaults() handler.
 	 */
-	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(@NotNull Class<T> configNodes, @NotNull String filepath, @Nullable Class<? extends ConfigurationHandler> handler) {
+	public <T extends Enum<T> & ConfigNodes> CommentedConfiguration(Class<T> configNodes, String filepath, Class<? extends ConfigurationHandler> handler) {
 		this.configNodes = configNodes.getEnumConstants();
 		this.filepath = filepath;
 		if (handler == null) {

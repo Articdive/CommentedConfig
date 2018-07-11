@@ -13,28 +13,11 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 public class FileMgmt {
-
-	public static void checkFolders(String[] folders) {
-
-		for (String folder : folders) {
-			File f = new File(folder);
-			if (!(f.exists() && f.isDirectory())) {
-				f.getParentFile().mkdirs();
-				f.mkdir();
-
-			}
-		}
-	}
-
-	public static String fileSeparator() {
-
-		return System.getProperty("file.separator");
-	}
-
-	public static File CheckYMLExists(File file) {
+	public static File checkYMLExists(File file) {
 
 		if (!file.exists()) {
 			try {
+				file.getParentFile().mkdirs();
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
