@@ -54,10 +54,7 @@ public class CommentedConfiguration {
 		return filepath;
 	}
 
-	ConfigurationHolder getHolder() {
-		return holder;
-	}
-
+	@SuppressWarnings("unused")
 	public String getString(ConfigNodes node) {
 		return holder.getConfig().getString(node.getNode().toLowerCase(), node.getDefaultValue());
 	}
