@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import de.articdive.utilities.FileMgmt;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConstructor;
@@ -172,8 +173,9 @@ public class CommentedConfig extends YamlConfiguration {
 			 * Due to a bukkit bug we need to strip any extra new lines from the
 			 * beginning of this file, else they will multiply.
 			 */
-			while (newContents.toString().startsWith(System.getProperty("line.separator")))
+			while (newContents.toString().startsWith(System.getProperty("line.separator"))) {
 				newContents = new StringBuilder(newContents.toString().replaceFirst(System.getProperty("line.separator"), ""));
+			}
 
 			// Write the string to the config file
 			FileMgmt.stringToFile(newContents.toString(), file);
@@ -200,7 +202,7 @@ public class CommentedConfig extends YamlConfiguration {
 			if (!line.isEmpty()) {
 				line = leadingSpaces + line;
 			} else {
-				line = " ";
+				line = "";
 			}
 			if (commentstring.length() > 0) {
 				commentstring.append(System.getProperty("line.separator"));
