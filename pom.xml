@@ -6,11 +6,11 @@
 
     <groupId>de.articdive</groupId>
     <artifactId>CommentedConfiguration</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>CommentedConfiguration</name>
-    <description>Ever hated configs? Stop now</description>
+    <description>Ever hated configs? Stop now.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
