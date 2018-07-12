@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import de.articdive.utilities.FileMgmt;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConstructor;
@@ -26,7 +27,6 @@ public class CommentedConfig extends YamlConfiguration {
 
 	private final DumperOptions yamlOptions = new DumperOptions();
 	private final Representer yamlRepresenter = new YamlRepresenter();
-	private final Yaml yaml = new Yaml(new YamlConstructor(), yamlRepresenter, yamlOptions);
 	private HashMap<String, String> comments;
 	private File file;
 
@@ -232,6 +232,7 @@ public class CommentedConfig extends YamlConfiguration {
 		yamlOptions.setWidth(10000);
 		yamlRepresenter.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
+		Yaml yaml = new Yaml(new YamlConstructor(), yamlRepresenter, yamlOptions);
 		String dump = yaml.dump(getValues(false));
 
 		if (dump.equals(BLANK_CONFIG)) {

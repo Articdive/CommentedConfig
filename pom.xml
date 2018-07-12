@@ -28,6 +28,7 @@
     </developers>
 
     <build>
+        <defaultGoal>clean package install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

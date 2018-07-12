@@ -68,10 +68,6 @@ public class FileMgmt {
 
 			OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
 
-			//BufferedWriter out = new BufferedWriter(new FileWriter(FileName));
-
-			source = source.replaceAll("\n", System.getProperty("line.separator"));
-
 			out.write(source);
 			out.close();
 
