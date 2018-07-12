@@ -1,5 +1,6 @@
 package de.articdive;
 
+import de.articdive.config.CommentedConfig;
 import de.articdive.config.ConfigurationHolder;
 import de.articdive.interfaces.ConfigNodes;
 import de.articdive.interfaces.ConfigurationHandler;
@@ -55,7 +56,18 @@ public class CommentedConfiguration {
 	}
 
 	@SuppressWarnings("unused")
+	public CommentedConfig getConfig() {
+		return holder.getConfig();
+	}
+
+	@SuppressWarnings("unused")
 	public String getString(ConfigNodes node) {
 		return holder.getConfig().getString(node.getNode().toLowerCase(), node.getDefaultValue());
+	}
+
+	@SuppressWarnings("unused")
+	public void setNode(ConfigNodes node, Object obj) {
+		holder.getConfig().set(node.getNode().toLowerCase(), obj);
+		holder.getConfig().save();
 	}
 }
