@@ -4,7 +4,6 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import de.articdive.utilities.FileMgmt;
 import org.apache.commons.lang.Validate;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.YamlConstructor;
