@@ -32,7 +32,6 @@ public class CommentedConfig extends YamlConfiguration {
 	public CommentedConfig(File file) {
 
 		super();
-		//this.load(file);
 		comments = new HashMap<>();
 		this.file = file;
 	}

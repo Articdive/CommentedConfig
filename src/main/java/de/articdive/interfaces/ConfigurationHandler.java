@@ -15,4 +15,18 @@ public abstract class ConfigurationHandler {
 	}
 
 	public abstract CommentedConfig setDefaults(CommentedConfig memoryconfig, File file);
+
+
+	protected void addComment(String root, String... comments) {
+
+		newConfig.addComment(root.toLowerCase(), comments);
+	}
+
+	protected void setNewProperty(String root, Object value) {
+
+		if (value == null) {
+			value = "";
+		}
+		newConfig.set(root.toLowerCase(), value.toString());
+	}
 }

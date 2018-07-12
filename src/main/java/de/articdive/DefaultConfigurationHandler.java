@@ -22,24 +22,11 @@ public class DefaultConfigurationHandler extends ConfigurationHandler {
 			if (root.getComments().length > 0) {
 				addComment(root.getNode(), root.getComments());
 			}
-			setNewProperty(root.getNode(), (memoryconfig.get(root.getNode().toLowerCase()) != null) ? memoryconfig.get(root.getNode().toLowerCase()) : root.getDefaultValue());
 
+			setNewProperty(root.getNode(), (memoryconfig.get(root.getNode().toLowerCase()) != null) ? memoryconfig.get(root.getNode().toLowerCase()) : root.getDefaultValue());
 		}
 
 		return newConfig;
-	}
-
-	private void addComment(String root, String... comments) {
-
-		newConfig.addComment(root.toLowerCase(), comments);
-	}
-
-	private void setNewProperty(String root, Object value) {
-
-		if (value == null) {
-			value = "";
-		}
-		newConfig.set(root.toLowerCase(), value.toString());
 	}
 
 }
