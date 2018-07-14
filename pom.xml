@@ -6,7 +6,7 @@
 
     <groupId>de.articdive</groupId>
     <artifactId>CommentedConfiguration</artifactId>
-    <version>2.0-RELEASE</version>
+    <version>2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>CommentedConfiguration</name>
@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>ci.articdive.cf</url>
+    <url>https://ci.articdive.cf</url>
 
     <developers>
         <developer>
@@ -23,6 +23,7 @@
             <roles>
                 <role>Project Leader</role>
             </roles>
+            <url>https://articdive.cf</url>
             <timezone>CEST (Germany)</timezone>
         </developer>
     </developers>
