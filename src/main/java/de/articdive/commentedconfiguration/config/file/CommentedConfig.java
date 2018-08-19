@@ -1,31 +1,16 @@
-package de.articdive.config;
+package de.articdive.commentedconfiguration.config.file;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
-import de.articdive.utilities.FileMgmt;
-import org.apache.commons.lang.Validate;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.file.YamlConstructor;
-import org.bukkit.configuration.file.YamlRepresenter;
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.representer.Representer;
+import de.articdive.commentedconfiguration.exceptions.InvalidConfigurationException;
+import de.articdive.commentedconfiguration.util.FileMgmt;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.HashMap;
 
 /**
- * @author dumptruckman
+ * @author dumptruckman & Articdive
  */
 public class CommentedConfig extends YamlConfiguration {
-
-	private final DumperOptions yamlOptions = new DumperOptions();
-	private final Representer yamlRepresenter = new YamlRepresenter();
 	private HashMap<String, String> comments;
 	private File file;
 
@@ -55,10 +40,6 @@ public class CommentedConfig extends YamlConfiguration {
 
 		// Save the config just like normal
 		try {
-			/*
-			 * Doing some saving of our own. We have found that the implementation of YAMLComfiguration used by Bukkit will attempt to
-			 * cap strings at 80 characters long, forming new lines in some of our longer strings (channel_formats.)
-			 */
 			this.save(file);
 
 		} catch (Exception e) {
@@ -158,6 +139,9 @@ public class CommentedConfig extends YamlConfiguration {
 					comment = comments.get(currentPath);
 					if (comment != null) {
 						// Add the comment to the beginning of the current line
+						if (!comment.startsWith("#")) {
+							comment = "# " + comment;
+						}
 						line = comment + System.getProperty("line.separator") + line + System.getProperty("line.separator");
 					} else {
 						// Add a new line as it is a node, but has no comment
@@ -210,35 +194,4 @@ public class CommentedConfig extends YamlConfiguration {
 		}
 		comments.put(path, commentstring.toString());
 	}
-
-
-	public void save(File file) throws IOException {
-		Validate.notNull(file, "File cannot be null");
-
-		Files.createParentDirs(file);
-
-		String data = this.saveToString();
-
-		try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), Charsets.UTF_8)) {
-			writer.write(data);
-		}
-	}
-
-	@Override
-	public String saveToString() {
-		yamlOptions.setIndent(options().indent());
-		yamlOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-		yamlOptions.setWidth(10000);
-		yamlRepresenter.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-
-		Yaml yaml = new Yaml(new YamlConstructor(), yamlRepresenter, yamlOptions);
-		String dump = yaml.dump(getValues(false));
-
-		if (dump.equals(BLANK_CONFIG)) {
-			dump = "";
-		}
-
-		return dump;
-	}
-
 }

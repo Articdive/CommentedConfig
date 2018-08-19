@@ -1,4 +1,4 @@
-package de.articdive.utilities;
+package de.articdive.commentedconfiguration.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +30,7 @@ public class FileMgmt {
 	 * Pass a file and it will return it's contents as a string.
 	 *
 	 * @param file File to read.
+	 *
 	 * @return Contents of file. String will be empty in case of any errors.
 	 */
 	public static String convertFileToString(File file) {
@@ -59,8 +60,8 @@ public class FileMgmt {
 	 *
 	 * @param source String to write.
 	 * @param file   File to write to.
+	 *
 	 * @return True on success.
-	 * @throws IOException
 	 */
 	public static void stringToFile(String source, File file) {
 

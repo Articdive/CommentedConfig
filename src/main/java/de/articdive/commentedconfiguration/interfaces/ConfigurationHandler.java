@@ -1,7 +1,7 @@
-package de.articdive.interfaces;
+package de.articdive.commentedconfiguration.interfaces;
 
-import de.articdive.CommentedConfiguration;
-import de.articdive.config.CommentedConfig;
+import de.articdive.commentedconfiguration.CommentedConfiguration;
+import de.articdive.commentedconfiguration.config.file.CommentedConfig;
 
 import java.io.File;
 

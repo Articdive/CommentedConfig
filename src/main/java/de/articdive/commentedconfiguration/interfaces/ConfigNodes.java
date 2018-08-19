@@ -1,4 +1,4 @@
-package de.articdive.interfaces;
+package de.articdive.commentedconfiguration.interfaces;
 
 public interface ConfigNodes {
 	String getNode();

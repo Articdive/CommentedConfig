@@ -1,10 +1,9 @@
-package de.articdive;
+package de.articdive.commentedconfiguration;
 
-import de.articdive.config.CommentedConfig;
-import de.articdive.config.ConfigurationHolder;
-import de.articdive.interfaces.ConfigNodes;
-import de.articdive.interfaces.ConfigurationHandler;
-import org.bukkit.util.Vector;
+import de.articdive.commentedconfiguration.config.ConfigurationHolder;
+import de.articdive.commentedconfiguration.config.file.CommentedConfig;
+import de.articdive.commentedconfiguration.interfaces.ConfigNodes;
+import de.articdive.commentedconfiguration.interfaces.ConfigurationHandler;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -86,11 +85,6 @@ public class CommentedConfiguration {
 	@SuppressWarnings("unused")
 	public long getLong(ConfigNodes node) {
 		return holder.getConfig().getLong(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public Vector getVector(ConfigNodes node) {
-		return holder.getConfig().getVector(node.getNode().toLowerCase());
 	}
 
 	@SuppressWarnings("unused")
