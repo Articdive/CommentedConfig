@@ -130,18 +130,16 @@ public class CommentedConfig extends YamlConfiguration {
 
 					}
 
-				} else
+				} else {
 					node = false;
+				}
 
 				if (node) {
-					String comment;
 					// If there's a comment for the current path, retrieve it and flag that path as already commented
-					comment = comments.get(currentPath);
+					String comment = comments.get(currentPath);
+
 					if (comment != null) {
 						// Add the comment to the beginning of the current line
-						if (!comment.startsWith("#")) {
-							comment = "# " + comment;
-						}
 						line = comment + System.getProperty("line.separator") + line + System.getProperty("line.separator");
 					} else {
 						// Add a new line as it is a node, but has no comment
@@ -149,18 +147,13 @@ public class CommentedConfig extends YamlConfiguration {
 					}
 				}
 				// Add the (modified) line to the total config String
-				newContents.append(line).append((!node) ? System.getProperty("line.separator") : "");
+				if (!node) {
+					newContents.append(line).append(System.getProperty("line.separator"));
+				} else {
+					newContents.append(line);
+				}
 
 			}
-			/*
-			 * Due to a bukkit bug we need to strip any extra new lines from the
-			 * beginning of this file, else they will multiply.
-			 */
-			while (newContents.toString().startsWith(System.getProperty("line.separator"))) {
-				newContents = new StringBuilder(newContents.toString().replaceFirst(System.getProperty("line.separator"), ""));
-			}
-
-			// Write the string to the config file
 			FileMgmt.stringToFile(newContents.toString(), file);
 		}
 	}
@@ -185,7 +178,7 @@ public class CommentedConfig extends YamlConfiguration {
 			if (!line.isEmpty()) {
 				line = leadingSpaces + line;
 			} else {
-				line = "";
+				line = " ";
 			}
 			if (commentstring.length() > 0) {
 				commentstring.append(System.getProperty("line.separator"));
