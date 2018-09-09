@@ -88,7 +88,6 @@ public class YamlConfiguration extends MemorySection implements Configuration {
 		yamlOptions.setWidth(10000);
 		yamlRepresenter.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
-		Yaml yaml = new Yaml(new YamlConstructor(), yamlRepresenter, yamlOptions);
 		String dump = yaml.dump(getValues(false));
 
 		if (dump.equals(BLANK_CONFIG)) {

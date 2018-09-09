@@ -176,12 +176,13 @@ public class CommentedConfig extends YamlConfiguration {
 		}
 		for (String line : commentLines) {
 			if (!line.isEmpty()) {
-				line = leadingSpaces + line;
+				if (!line.equals(commentLines[commentLines.length - 1])) {
+					line = leadingSpaces + line + System.getProperty("line.separator");
+				} else {
+					line = leadingSpaces + line;
+				}
 			} else {
-				line = " ";
-			}
-			if (commentstring.length() > 0) {
-				commentstring.append(System.getProperty("line.separator"));
+				line = System.getProperty("line.separator") + "";
 			}
 			commentstring.append(line);
 		}
