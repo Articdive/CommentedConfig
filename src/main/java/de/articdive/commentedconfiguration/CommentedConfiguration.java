@@ -6,8 +6,6 @@ import de.articdive.commentedconfiguration.interfaces.ConfigNodes;
 import de.articdive.commentedconfiguration.interfaces.ConfigurationHandler;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map;
 
 public class CommentedConfiguration {
 	private ConfigNodes[] configNodes;
@@ -62,84 +60,29 @@ public class CommentedConfiguration {
 		return holder.getConfig();
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings({"unused", "WeakerAccess"})
 	public String getString(ConfigNodes node) {
-		return holder.getConfig().getString(node.getNode().toLowerCase());
+		return holder.getConfig().getString(node.getNode().toLowerCase(), node.getDefaultValue());
 	}
 
 	@SuppressWarnings("unused")
 	public int getInt(ConfigNodes node) {
-		return holder.getConfig().getInt(node.getNode().toLowerCase());
+		return Integer.parseInt(getString(node));
 	}
 
 	@SuppressWarnings("unused")
 	public boolean getBoolean(ConfigNodes node) {
-		return holder.getConfig().getBoolean(node.getNode().toLowerCase());
+		return Boolean.parseBoolean(getString(node));
 	}
 
 	@SuppressWarnings("unused")
 	public double getDouble(ConfigNodes node) {
-		return holder.getConfig().getDouble(node.getNode().toLowerCase());
+		return Double.parseDouble(getString(node));
 	}
 
 	@SuppressWarnings("unused")
 	public long getLong(ConfigNodes node) {
-		return holder.getConfig().getLong(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<?> getList(ConfigNodes node) {
-		return holder.getConfig().getList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<String> getStringList(ConfigNodes node) {
-		return holder.getConfig().getStringList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Boolean> getBooleanList(ConfigNodes node) {
-		return holder.getConfig().getBooleanList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Byte> getByteList(ConfigNodes node) {
-		return holder.getConfig().getByteList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Character> getCharacterList(ConfigNodes node) {
-		return holder.getConfig().getCharacterList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Double> getDoubleList(ConfigNodes node) {
-		return holder.getConfig().getDoubleList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Integer> getIntegerList(ConfigNodes node) {
-		return holder.getConfig().getIntegerList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Float> getFloatList(ConfigNodes node) {
-		return holder.getConfig().getFloatList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Short> getShortList(ConfigNodes node) {
-		return holder.getConfig().getShortList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Long> getLongList(ConfigNodes node) {
-		return holder.getConfig().getLongList(node.getNode().toLowerCase());
-	}
-
-	@SuppressWarnings("unused")
-	public List<Map<?, ?>> getMapList(ConfigNodes node) {
-		return holder.getConfig().getMapList(node.getNode().toLowerCase());
+		return Long.parseLong(getString(node));
 	}
 
 	@SuppressWarnings("unused")
